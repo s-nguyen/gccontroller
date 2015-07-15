@@ -20,5 +20,10 @@
     nop
     mov w2, LATB
     return
+    
+  .global _toggle
+  _toggle:
+    BTG LATB, #2
+    return
  
  

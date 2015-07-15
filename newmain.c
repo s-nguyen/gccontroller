@@ -15,27 +15,48 @@ _CONFIG2( IESO_OFF & SOSCSEL_SOSC & WUTSEL_LEG & FNOSC_PRIPLL & FCKSM_CSDCMD & O
     IOL1WAY_OFF & I2C1SEL_PRI & POSCMOD_XT )
  
   
+void initSW1(){
+    TRISBbits.TRISB5 = 1;
+    IFS1bits.CNIF = 0;
+    IEC1bits.CNIE = 1;
+    CNEN2bits.CN27IE = 1;
+}
 
 int main(void) {
+    initSW1();
     AD1PCFG = 0xFFFF; // All pins to digital
+    ODCBbits.ODB2 = 1;
     TRISBbits.TRISB2 = 0;
-    TRISBbits.TRISB2 = 1;
+
     //use LATBbits.LATB2
-    LATBbits.LATB2 = 1;
-    LATBbits.LATB2 = 0;
+    LATBbits.LATB2 = 1; //1 is high
+  
     
     //set pin to open drain
     
     while(1){
-         init();
+        // init();
 //        TRISB = 0xFFFF;
 //        TRISB = 0xFFFF;
 //        TRISB = 0xFFFF;
 //        TRISB = 0xFFFF;
 //        TRISB = 0xFFFF;
-          assembly();
+         // assembly();
         //asmVariable = 0x1234;          
     }
     return 0;
+}
+
+void _ISR _CNInterrupt(void){
+     
+    IFS1bits.CNIF = 0;
+    if(PORTBbits.RB5 == 0){
+     
+    }
+    else if(PORTBbits.RB5 == 1){
+        toggle();
+        
+    }
+  
 }
 

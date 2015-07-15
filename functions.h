@@ -10,5 +10,6 @@
 
 void init();
 void assembly();
+void toggle();
 #endif	/* FUNCTIONS_H */
 
