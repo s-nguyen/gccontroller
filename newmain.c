@@ -24,7 +24,7 @@ int main(void) {
     LATBbits.LATB2 = 1;
     LATBbits.LATB2 = 0;
     
-    
+    //set pin to open drain
     
     while(1){
          init();
