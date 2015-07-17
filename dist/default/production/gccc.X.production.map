@@ -57,10 +57,10 @@ Program Memory  [Origin = 0x200, Length = 0xa9fc]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0x9e            0xed  (237)
-.text                        0x29e                0x72            0xab  (171)
-.dinit                       0x310                 0x2             0x3  (3)
+.text                        0x29e               0x110           0x198  (408)
+.dinit                       0x3ae                 0x2             0x3  (3)
 
-                     Total program memory used (bytes):          0x19b  (411) <1%
+                     Total program memory used (bytes):          0x288  (648) <1%
 
 
 Data Memory  [Origin = 0x800, Length = 0x2000]
@@ -85,29 +85,27 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00022c                  __psv_init
-                  0x00023c                  __data_init_standard
                   0x00023c                  __data_init
+                  0x00023c                  __data_init_standard
                   0x00029a                  __DefaultInterrupt
-                  0x00029e                  _initSW1
-                  0x0002ac                  _main
-                  0x0002bc                  __CNInterrupt
-                  0x0002f6                  _init
-                  0x0002fc                  _assembly
-                  0x00030c                  _toggle
+                  0x00029e                  _assembly
+                  0x000320                  _toggle
+                  0x000356                  _initSW1
+                  0x000364                  _main
+                  0x000374                  __CNInterrupt
 
 External Symbols in Program Memory (by name):
 
-                  0x0002bc                  __CNInterrupt
+                  0x000374                  __CNInterrupt
                   0x00029a                  __DefaultInterrupt
                   0x00023c                  __data_init
                   0x00023c                  __data_init_standard
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0002fc                  _assembly
-                  0x0002f6                  _init
-                  0x00029e                  _initSW1
-                  0x0002ac                  _main
-                  0x00030c                  _toggle
+                  0x00029e                  _assembly
+                  0x000356                  _initSW1
+                  0x000364                  _main
+                  0x000320                  _toggle
 
 Memory Configuration
 
@@ -189,10 +187,10 @@ __CONFIG1         0x00abfe          0x2
  .debug_abbrev    0x000000        0x10b build/default/production/newmain.o
  .debug_abbrev    0x00010b         0x14 build/default/production/functions.o
 
-.debug_line       0x000000        0x185
+.debug_line       0x000000        0x1ba
  *(.debug_line)
  .debug_line      0x000000        0x144 build/default/production/newmain.o
- .debug_line      0x000144         0x41 build/default/production/functions.o
+ .debug_line      0x000144         0x76 build/default/production/functions.o
 
 .debug_frame      0x000000         0x44
  *(.debug_frame)
@@ -252,7 +250,7 @@ __CONFIG1         0x00abfe          0x2
                   0x000034          0x4 LONG 0x29a DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000036          0x4 LONG 0x29a DEFINED (__MI2C1Interrupt)?ABSOLUTE (__MI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000038          0x4 LONG 0x29a DEFINED (__CompInterrupt)?ABSOLUTE (__CompInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00003a          0x4 LONG 0x2bc DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00003a          0x4 LONG 0x374 DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00003c          0x4 LONG 0x29a DEFINED (__INT1Interrupt)?ABSOLUTE (__INT1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00003e          0x4 LONG 0x29a DEFINED (__Interrupt21)?ABSOLUTE (__Interrupt21):ABSOLUTE (__DefaultInterrupt)
                   0x000040          0x4 LONG 0x29a DEFINED (__Interrupt22)?ABSOLUTE (__Interrupt22):ABSOLUTE (__DefaultInterrupt)
@@ -380,7 +378,7 @@ __CONFIG1         0x00abfe          0x2
                   0x000134          0x4 LONG 0x29a DEFINED (__AltSI2C1Interrupt)?ABSOLUTE (__AltSI2C1Interrupt):DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000136          0x4 LONG 0x29a DEFINED (__AltMI2C1Interrupt)?ABSOLUTE (__AltMI2C1Interrupt):DEFINED (__MI2C1Interrupt)?ABSOLUTE (__MI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000138          0x4 LONG 0x29a DEFINED (__AltCompInterrupt)?ABSOLUTE (__AltCompInterrupt):DEFINED (__CompInterrupt)?ABSOLUTE (__CompInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00013a          0x4 LONG 0x2bc DEFINED (__AltCNInterrupt)?ABSOLUTE (__AltCNInterrupt):DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00013a          0x4 LONG 0x374 DEFINED (__AltCNInterrupt)?ABSOLUTE (__AltCNInterrupt):DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00013c          0x4 LONG 0x29a DEFINED (__AltINT1Interrupt)?ABSOLUTE (__AltINT1Interrupt):DEFINED (__INT1Interrupt)?ABSOLUTE (__INT1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00013e          0x4 LONG 0x29a DEFINED (__AltInterrupt21)?ABSOLUTE (__AltInterrupt21):DEFINED (__Interrupt21)?ABSOLUTE (__Interrupt21):ABSOLUTE (__DefaultInterrupt)
                   0x000140          0x4 LONG 0x29a DEFINED (__AltInterrupt22)?ABSOLUTE (__AltInterrupt22):DEFINED (__Interrupt22)?ABSOLUTE (__Interrupt22):ABSOLUTE (__DefaultInterrupt)
@@ -1078,15 +1076,14 @@ __c30_signature
  __c30_signature
                   0x00011f          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libpic30-elf.a(data_init_standard.o)
 
-.text             0x00029e         0x72
- .text            0x00029e         0x58 build/default/production/newmain.o
-                  0x00029e                  _initSW1
-                  0x0002ac                  _main
-                  0x0002bc                  __CNInterrupt
- .text            0x0002f6         0x1a build/default/production/functions.o
-                  0x0002f6                  _init
-                  0x0002fc                  _assembly
-                  0x00030c                  _toggle
+.text             0x00029e        0x110
+ .text            0x00029e         0xb8 build/default/production/functions.o
+                  0x00029e                  _assembly
+                  0x000320                  _toggle
+ .text            0x000356         0x58 build/default/production/newmain.o
+                  0x000356                  _initSW1
+                  0x000364                  _main
+                  0x000374                  __CNInterrupt
 
-.dinit            0x000310          0x2
- .dinit           0x000310          0x2 data_init
+.dinit            0x0003ae          0x2
+ .dinit           0x0003ae          0x2 data_init

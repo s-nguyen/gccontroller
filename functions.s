@@ -1,29 +1,88 @@
 ;
-; file: functions.asm
+; file: functions.s
 ;
- .text
- .global _init
- _init:
-  mov #4, w1
-  mov #0, w2
-  return
- 
-  
+
   .global _assembly
   _assembly:
+    call sendZero
     call sendOne
+    call sendZero
+    call sendZero
+    
+    call sendZero
+    call sendZero
+    call sendZero
+    call sendZero
+    
+    call sendZero
+    call sendZero
+    call sendZero
+    call sendZero
+    
+    call sendZero
+    call sendZero
+    call sendOne
+    call sendOne
+    
+    call sendZero
+    call sendZero
+    call sendZero
+    call sendZero
+    
+    call sendZero
+    call sendZero
+    call sendOne
+    call sendZero
     return
     
+  sendZero:
+    BCLR LATB, #2
+    call delay29
+    BSET LATB, #2
+    nop
+    nop
+    nop
+    nop
+    return
   sendOne:
-    mov w1, LATB
-    nop
-    nop
-    mov w2, LATB
+    bclr LATB, #2
+    call delay9
+    bset LATB, #2
+    call delay25
     return
-    
   .global _toggle
   _toggle:
     BTG LATB, #2
     return
+  
+  delay29:
+    nop
+    nop
+    nop
+    nop
+    nop
+  delay25:
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+  delay9:
+    nop
+    nop
+    nop
+    nop
+  delay5:
+    return
  
- 
+  
